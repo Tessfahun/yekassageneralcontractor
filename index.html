@@ -6,46 +6,55 @@
   <title>Ye-Kassa General Contractor</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f9fafb;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: #f0f4f8;
       color: #333;
       margin: 0;
       padding: 0;
+      overflow-x: hidden;
+      transition: background-color 1.5s ease-in-out;
+    }
+
+    body.loaded {
+      background-color: #ffffff;
     }
 
     header {
       background-color: #0078d7;
       color: white;
       text-align: center;
-      padding: 2rem 0;
+      padding: 2rem 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
     }
 
     header h1 {
       margin: 0;
       font-size: 2rem;
+      letter-spacing: 0.5px;
+    }
+
+    header p {
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+      opacity: 0.9;
     }
 
     main {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 2rem auto;
       text-align: center;
       padding: 0 1rem;
     }
 
-    p {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-    }
-
     /* Loader animation */
     .loader {
-      border: 6px solid #f3f3f3;
+      border: 6px solid #e3e3e3;
       border-top: 6px solid #0078d7;
       border-radius: 50%;
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
       animation: spin 1s linear infinite;
-      margin: 30px auto;
+      margin: 50px auto;
     }
 
     @keyframes spin {
@@ -53,13 +62,37 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* Fade-in effect for iframe */
-    iframe {
+    /* Loader container fade */
+    .loader-container {
+      text-align: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .loader-container.fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    /* Responsive iframe wrapper */
+    .iframe-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 130%;
+      overflow: hidden;
+    }
+
+    .iframe-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
       opacity: 0;
       transition: opacity 1s ease-in;
     }
 
-    iframe.visible {
+    .iframe-wrapper iframe.visible {
       opacity: 1;
     }
 
@@ -69,19 +102,33 @@
       padding: 1rem 0;
       font-size: 0.9rem;
       color: #555;
+      margin-top: 3rem;
+    }
+
+    /* Larger screens */
+    @media (min-width: 768px) {
+      header h1 {
+        font-size: 2.3rem;
+      }
+
+      .iframe-wrapper {
+        padding-top: 65%;
+      }
     }
   </style>
 </head>
 <body>
   <header>
     <h1>Welcome to Ye-Kassa General Contractor</h1>
-    <p>We build innovative solutions for our company</p>
+    <p>Building sustainable and innovative infrastructure solutions</p>
   </header>
 
   <main>
-    <div id="iframeContainer" style="min-height:800px;">
-      <div class="loader"></div>
-      <p>Loading content, please wait...</p>
+    <div id="iframeContainer">
+      <div id="loaderContainer" class="loader-container">
+        <div class="loader"></div>
+        <p>Loading content, please wait...</p>
+      </div>
     </div>
   </main>
 
@@ -90,31 +137,40 @@
   </footer>
 
   <script>
-    // Create iframe dynamically after page load
     window.addEventListener("load", function() {
+      // Smooth background transition
+      document.body.classList.add("loaded");
+
+      const iframeWrapper = document.createElement("div");
+      iframeWrapper.className = "iframe-wrapper";
+
       const iframe = document.createElement("iframe");
       iframe.src = "https://script.google.com/macros/s/AKfycbzfhQF84xIb-g6qDOyqSQGZ0fhU4JVL3SS98rFWp-IObUtJWoA_tduTA_5V23nhiku4/exec";
-      iframe.width = "100%";
-      iframe.height = "800";
-      iframe.style.border = "none";
       iframe.loading = "lazy";
 
+      const loaderContainer = document.getElementById("loaderContainer");
+      const container = document.getElementById("iframeContainer");
+
       iframe.onload = () => {
-        iframe.classList.add("visible"); // trigger fade-in
-        const container = document.getElementById("iframeContainer");
-        container.innerHTML = "";
-        container.appendChild(iframe);
+        loaderContainer.classList.add("fade-out");
+        iframe.classList.add("visible");
+
+        setTimeout(() => {
+          container.innerHTML = "";
+          iframeWrapper.appendChild(iframe);
+          container.appendChild(iframeWrapper);
+        }, 800);
       };
 
-      // Add fallback if load fails
+      // Fallback: if it doesn't load
       setTimeout(() => {
-        const container = document.getElementById("iframeContainer");
-        if (!container.querySelector("iframe")) {
+        if (!iframe.classList.contains("visible")) {
           container.innerHTML = "<p style='color:red;'>Failed to load content. Please check your internet connection.</p>";
         }
       }, 15000);
 
-      document.getElementById("iframeContainer").appendChild(iframe);
+      document.getElementById("iframeContainer").appendChild(iframeWrapper);
+      iframeWrapper.appendChild(iframe);
     });
   </script>
 </body>
