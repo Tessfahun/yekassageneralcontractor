@@ -3,82 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ye-Kassa General Contractor</title>
+  <title>Ye-Kassa General Contaractor</title>
   <style>
     body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      background-color: #f0f4f8;
+      font-family: Arial, sans-serif;
+      background-color: #f9fafb;
       color: #333;
       margin: 0;
       padding: 0;
-      overflow-x: hidden;
-      transition: background-color 1.5s ease-in-out;
-    }
-
-    body.loaded {
-      background-color: #ffffff;
     }
 
     header {
       background-color: #0078d7;
       color: white;
       text-align: center;
-      padding: 2rem 1rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      padding: 2rem 0;
     }
 
     header h1 {
       margin: 0;
       font-size: 2rem;
-      letter-spacing: 0.5px;
-    }
-
-    header p {
-      margin-top: 0.5rem;
-      font-size: 1.1rem;
-      opacity: 0.9;
     }
 
     main {
-      max-width: 1000px;
-      margin: 2rem auto;
+      max-width: 800px;
+      margin: 3rem auto;
       text-align: center;
-      padding: 0 1rem;
     }
 
-    /* Loader animation */
-    .loader {
-      border: 6px solid #e3e3e3;
-      border-top: 6px solid #0078d7;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      animation: spin 1s linear infinite;
-      margin: 50px auto;
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
     }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    a.button {
+      display: inline-block;
+      background-color: #0078d7;
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
     }
 
-    .loader-container {
-      text-align: center;
-      transition: opacity 0.8s ease, visibility 0.8s ease;
-    }
-
-    .loader-container.fade-out {
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    .content {
-      opacity: 0;
-      transition: opacity 1s ease-in;
-    }
-
-    .content.visible {
-      opacity: 1;
+    a.button:hover {
+      background-color: #005fa3;
     }
 
     footer {
@@ -87,58 +56,24 @@
       padding: 1rem 0;
       font-size: 0.9rem;
       color: #555;
-      margin-top: 3rem;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Welcome to Ye-Kassa General Contractor</h1>
-    <p>Building sustainable and innovative infrastructure solutions</p>
+    <h1>Welcome to Ye-Kassa General Contaractor</h1>
+    <p>We build innovative solutions for Our Company</p>
   </header>
 
   <main>
-    <div id="loaderContainer" class="loader-container">
-      <div class="loader"></div>
-      <p>Loading content, please wait...</p>
-    </div>
-
-    <div id="contentContainer" class="content"></div>
-  </main>
+    <iframe src="https://script.google.com/macros/s/AKfycbzfhQF84xIb-g6qDOyqSQGZ0fhU4JVL3SS98rFWp-IObUtJWoA_tduTA_5V23nhiku4/exec"
+        width="100%"
+        height="800"
+        style="border:none;">
+</iframe>
 
   <footer>
-    &copy; 2025 Ye-Kassa General Contractor. All rights reserved.
+    &copy; 2025 Ye-Kassa General Contaractor. All rights reserved.
   </footer>
-
-  <script>
-    window.addEventListener("load", function() {
-      // Smooth background transition
-      document.body.classList.add("loaded");
-
-      const loader = document.getElementById("loaderContainer");
-      const content = document.getElementById("contentContainer");
-
-      // Fetch your Google Web App content
-      fetch("https://script.google.com/macros/s/AKfycbzfhQF84xIb-g6qDOyqSQGZ0fhU4JVL3SS98rFWp-IObUtJWoA_tduTA_5V23nhiku4/exec")
-        .then(response => {
-          if (!response.ok) throw new Error("Network response was not ok");
-          return response.text(); // or response.json() if returning JSON
-        })
-        .then(data => {
-          // Hide loader
-          loader.classList.add("fade-out");
-
-          // Insert fetched content
-          content.innerHTML = data;
-          content.classList.add("visible");
-        })
-        .catch(err => {
-          loader.classList.add("fade-out");
-          content.innerHTML = "<p style='color:red;'>Failed to load content. Please check your internet connection.</p>";
-          content.classList.add("visible");
-          console.error("Error fetching Google Web App:", err);
-        });
-    });
-  </script>
 </body>
 </html>
