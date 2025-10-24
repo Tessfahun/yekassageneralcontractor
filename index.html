@@ -53,6 +53,16 @@
       100% { transform: rotate(360deg); }
     }
 
+    /* Fade-in effect for iframe */
+    iframe {
+      opacity: 0;
+      transition: opacity 1s ease-in;
+    }
+
+    iframe.visible {
+      opacity: 1;
+    }
+
     footer {
       background-color: #f1f1f1;
       text-align: center;
@@ -90,12 +100,13 @@
       iframe.loading = "lazy";
 
       iframe.onload = () => {
+        iframe.classList.add("visible"); // trigger fade-in
         const container = document.getElementById("iframeContainer");
-        container.innerHTML = ""; // remove loader
+        container.innerHTML = "";
         container.appendChild(iframe);
       };
 
-      // Add small timeout fallback (in case loading fails)
+      // Add fallback if load fails
       setTimeout(() => {
         const container = document.getElementById("iframeContainer");
         if (!container.querySelector("iframe")) {
@@ -103,7 +114,6 @@
         }
       }, 15000);
 
-      // Start loading iframe
       document.getElementById("iframeContainer").appendChild(iframe);
     });
   </script>
