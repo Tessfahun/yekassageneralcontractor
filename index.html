@@ -3,480 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ye-Kassa General Contractor</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Ye-Kassa General Contaractor</title>
   <style>
-    :root {
-      --primary: #0078d7;
-      --primary-dark: #005fa3;
-      --secondary: #ff6b00;
-      --light: #f9fafb;
-      --dark: #333;
-      --gray: #555;
-      --light-gray: #f1f1f1;
-      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      --transition: all 0.3s ease;
-    }
-
-    * {
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9fafb;
+      color: #333;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--light);
-      color: var(--dark);
-      line-height: 1.6;
-      overflow-x: hidden;
     }
 
     header {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      background-color: #0078d7;
       color: white;
-      padding: 2rem 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .header-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
       text-align: center;
-      position: relative;
-      z-index: 2;
+      padding: 2rem 0;
     }
 
-    .header-content h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      font-weight: 700;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    .header-content p {
-      font-size: 1.3rem;
-      max-width: 600px;
-      margin: 0 auto 2rem;
-      opacity: 0.9;
-    }
-
-    .header-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgZmlsbD0idXJsKCNwYXR0ZXJuKSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIvPjwvc3ZnPg==');
-      z-index: 1;
-    }
-
-    nav {
-      background-color: white;
-      box-shadow: var(--shadow);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-    }
-
-    .logo i {
-      margin-right: 0.5rem;
-    }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-    }
-
-    .nav-links li {
-      margin-left: 2rem;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--dark);
-      font-weight: 500;
-      transition: var(--transition);
-      position: relative;
-    }
-
-    .nav-links a:hover {
-      color: var(--primary);
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: var(--primary);
-      transition: var(--transition);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
     }
 
     main {
-      max-width: 1200px;
+      max-width: 800px;
       margin: 3rem auto;
-      padding: 0 2rem;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 3rem;
-      position: relative;
-    }
-
-    .section-title h2 {
-      font-size: 2.5rem;
-      color: var(--primary);
-      margin-bottom: 1rem;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background-color: var(--secondary);
-    }
-
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-bottom: 4rem;
-    }
-
-    .service-card {
-      background-color: white;
-      border-radius: 10px;
-      padding: 2rem;
-      box-shadow: var(--shadow);
-      transition: var(--transition);
       text-align: center;
     }
 
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .service-icon {
-      font-size: 3rem;
-      color: var(--primary);
-      margin-bottom: 1.5rem;
-    }
-
-    .service-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: var(--dark);
-    }
-
-    .service-card p {
-      color: var(--gray);
-    }
-
-    .iframe-container {
-      background-color: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      margin-bottom: 4rem;
-      position: relative;
-    }
-
-    .iframe-container iframe {
-      width: 100%;
-      height: 800px;
-      border: none;
-    }
-
-    .iframe-loading {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(255, 255, 255, 0.9);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      z-index: 10;
-    }
-
-    .spinner {
-      width: 50px;
-      height: 50px;
-      border: 5px solid rgba(0, 120, 215, 0.2);
-      border-radius: 50%;
-      border-top-color: var(--primary);
-      animation: spin 1s linear infinite;
-      margin-bottom: 1rem;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .contact-section {
-      background-color: white;
-      border-radius: 10px;
-      padding: 3rem;
-      box-shadow: var(--shadow);
-      margin-bottom: 4rem;
-      text-align: center;
-    }
-
-    .contact-info {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--gray);
-    }
-
-    .contact-item i {
-      color: var(--primary);
-    }
-
-    footer {
-      background-color: var(--dark);
-      color: white;
-      padding: 3rem 0 1rem;
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
+    p {
+      font-size: 1.1rem;
       margin-bottom: 2rem;
     }
 
-    .footer-column h3 {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-      position: relative;
-      padding-bottom: 0.5rem;
-    }
-
-    .footer-column h3::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 40px;
-      height: 2px;
-      background-color: var(--secondary);
-    }
-
-    .footer-links {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: 0.8rem;
-    }
-
-    .footer-links a {
-      color: #ccc;
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .footer-links a:hover {
+    a.button {
+      display: inline-block;
+      background-color: #0078d7;
       color: white;
-      padding-left: 5px;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
     }
 
-    .developer-info {
+    a.button:hover {
+      background-color: #005fa3;
+    }
+
+    footer {
+      background-color: #f1f1f1;
       text-align: center;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      max-width: 1200px;
-      margin: 0 auto;
-      padding-left: 2rem;
-      padding-right: 2rem;
-    }
-
-    .developer-info p {
-      margin-bottom: 0.5rem;
-    }
-
-    .developer-name {
-      font-weight: 600;
-      color: var(--secondary);
-    }
-
-    .copyright {
+      padding: 1rem 0;
       font-size: 0.9rem;
-      color: #aaa;
+      color: #555;
     }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .header-content h1 {
-        font-size: 2.2rem;
-      }
-
-      .header-content p {
-        font-size: 1.1rem;
-      }
-
-      .nav-container {
-        flex-direction: column;
-        padding: 1rem;
-      }
-
-      .nav-links {
-        margin-top: 1rem;
-      }
-
-      .nav-links li {
-        margin-left: 1rem;
-        margin-right: 1rem;
-      }
-
-      .section-title h2 {
-        font-size: 2rem;
-      }
-
-      .contact-section {
-        padding: 2rem 1rem;
-      }
-
-      .iframe-container iframe {
-        height: 600px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .header-content h1 {
-        font-size: 1.8rem;
-      }
-
-      .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .nav-links li {
-        margin: 0.5rem;
-      }
-
-      .services {
-        grid-template-columns: 1fr;
-      }
-
-      .iframe-container iframe {
-        height: 500px;
-      }
+    
+    .developer-info {
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="header-bg"></div>
-    <div class="header-content">
-      <h1>Ye-Kassa General Contractor</h1>
-      <p>Building innovative solutions with precision and excellence</p>
-      <a href="#contact" class="button" style="display: inline-block; background-color: var(--secondary); color: white; text-decoration: none; padding: 0.75rem 1.5rem; border-radius: 6px; transition: var(--transition); font-weight: 600;">Get in Touch</a>
-    </div>
+    <h1>Welcome to Ye-Kassa General Contaractor</h1>
+    <p>We build innovative solutions for Our Company</p>
   </header>
 
-  <nav>
-    <div class="nav-container">
-      <div class="logo">
-        <i class="fas fa-hard-hat"></i>
-        <span>Ye-Kassa</span>
-      </div>
-    </div>
-          <p>Loading project portal...</p>
-        </div>
-        <iframe src="https://script.google.com/macros/s/AKfycbzfhQF84xIb-g6qDOyqSQGZ0fhU4JVL3SS98rFWp-IObUtJWoA_tduTA_5V23nhiku4/exec"></iframe>
-      </div>
-    </section>
+  <main>
+    <iframe src="https://script.google.com/macros/s/AKfycbzfhQF84xIb-g6qDOyqSQGZ0fhU4JVL3SS98rFWp-IObUtJWoA_tduTA_5V23nhiku4/exec"
+        width="100%"
+        height="800"
+        style="border:none;">
+</iframe>
 
   <footer>
+    &copy; 2025 Ye-Kassa General Contaractor. All rights reserved.
     <div class="developer-info">
-      <p><span class="developer-name">Developed by Tesfahun Getinet</span></p>
-      <p>Contact: tesfuzemikael12@gmail.com</p>
-      <p class="copyright">&copy; 2025 Ye-Kassa General Contractor. All rights reserved.</p>
+      Developed by Tesfahun Getinet, contact me tesfuzemikael12@gmail.com
     </div>
   </footer>
-
-  <script>
-    // Simple script to handle iframe loading
-    document.addEventListener('DOMContentLoaded', function() {
-      const iframe = document.querySelector('iframe');
-      const loadingElement = document.querySelector('.iframe-loading');
-      
-      iframe.addEventListener('load', function() {
-        loadingElement.style.display = 'none';
-      });
-      
-      // Fallback: hide loading after 5 seconds regardless
-      setTimeout(function() {
-        loadingElement.style.display = 'none';
-      }, 5000);
-      
-      // Smooth scrolling for navigation links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          e.preventDefault();
-          const targetId = this.getAttribute('href');
-          if (targetId === '#') return;
-          
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            window.scrollTo({
-              top: targetElement.offsetTop - 100,
-              behavior: 'smooth'
-            });
-          }
-        });
-      });
-    });
-  </script>
 </body>
 </html>
-
