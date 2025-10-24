@@ -72,12 +72,26 @@
       visibility: hidden;
     }
 
-    .content {
+    /* Responsive iframe wrapper */
+    .iframe-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 130%; /* mobile aspect ratio */
+      overflow: hidden;
+    }
+
+    .iframe-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
       opacity: 0;
       transition: opacity 1s ease-in;
     }
 
-    .content.visible {
+    .iframe-wrapper iframe.visible {
       opacity: 1;
     }
 
@@ -89,6 +103,17 @@
       color: #555;
       margin-top: 3rem;
     }
+
+    /* Larger screens */
+    @media (min-width: 768px) {
+      header h1 {
+        font-size: 2.3rem;
+      }
+
+      .iframe-wrapper {
+        padding-top: 65%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -98,12 +123,12 @@
   </header>
 
   <main>
-    <div id="loaderContainer" class="loader-container">
-      <div class="loader"></div>
-      <p>Loading content, please wait...</p>
+    <div id="iframeContainer">
+      <div id="loaderContainer" class="loader-container">
+        <div class="loader"></div>
+        <p>Loading content, please wait...</p>
+      </div>
     </div>
-
-    <div id="contentContainer" class="content"></div>
   </main>
 
   <footer>
@@ -112,32 +137,39 @@
 
   <script>
     window.addEventListener("load", function() {
-      // Smooth background transition
       document.body.classList.add("loaded");
 
-      const loader = document.getElementById("loaderContainer");
-      const content = document.getElementById("contentContainer");
+      const iframeWrapper = document.createElement("div");
+      iframeWrapper.className = "iframe-wrapper";
 
-      // Fetch your Google Web App content
-      fetch("https://script.google.com/macros/s/AKfycbzfhQF84xIb-g6qDOyqSQGZ0fhU4JVL3SS98rFWp-IObUtJWoA_tduTA_5V23nhiku4/exec")
-        .then(response => {
-          if (!response.ok) throw new Error("Network response was not ok");
-          return response.text(); // or response.json() if returning JSON
-        })
-        .then(data => {
-          // Hide loader
-          loader.classList.add("fade-out");
+      const iframe = document.createElement("iframe");
+      iframe.src = "https://script.google.com/macros/s/AKfycbzfhQF84xIb-g6qDOyqSQGZ0fhU4JVL3SS98rFWp-IObUtJWoA_tduTA_5V23nhiku4/exec";
+      iframe.loading = "lazy";
 
-          // Insert fetched content
-          content.innerHTML = data;
-          content.classList.add("visible");
-        })
-        .catch(err => {
-          loader.classList.add("fade-out");
-          content.innerHTML = "<p style='color:red;'>Failed to load content. Please check your internet connection.</p>";
-          content.classList.add("visible");
-          console.error("Error fetching Google Web App:", err);
-        });
+      const loaderContainer = document.getElementById("loaderContainer");
+      const container = document.getElementById("iframeContainer");
+
+      iframe.onload = () => {
+        loaderContainer.classList.add("fade-out");
+        iframe.classList.add("visible");
+
+        setTimeout(() => {
+          container.innerHTML = "";
+          iframeWrapper.appendChild(iframe);
+          container.appendChild(iframeWrapper);
+        }, 800);
+      };
+
+      // Fallback if iframe doesn't load
+      setTimeout(() => {
+        if (!iframe.classList.contains("visible")) {
+          container.innerHTML = "<p style='color:red;'>Failed to load content. Please check your internet connection or Google Web App deployment.</p>";
+        }
+      }, 15000);
+
+      // Append iframe
+      document.getElementById("iframeContainer").appendChild(iframeWrapper);
+      iframeWrapper.appendChild(iframe);
     });
   </script>
 </body>
