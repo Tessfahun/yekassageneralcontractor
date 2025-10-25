@@ -57,21 +57,23 @@
     }
 
     .logo {
-      width: 80px;
-      height: 80px;
+      width: 100px;
+      height: 100px;
       background-color: white;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-right: 1rem;
+      margin-right: 1.5rem;
       box-shadow: var(--shadow);
+      padding: 10px;
     }
 
     .logo img {
-      width: 60px;
-      height: 60px;
+      width: 100%;
+      height: 100%;
       object-fit: contain;
+      border-radius: 50%;
     }
 
     .logo-text {
@@ -79,14 +81,14 @@
     }
 
     .logo-text h1 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       margin-bottom: 0.2rem;
       font-weight: 700;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     .logo-text p {
-      font-size: 1rem;
+      font-size: 1.2rem;
       opacity: 0.9;
       margin: 0;
     }
@@ -131,8 +133,8 @@
     }
 
     .nav-logo img {
-      height: 40px;
-      margin-right: 10px;
+      height: 45px;
+      margin-right: 12px;
     }
 
     .nav-logo span {
@@ -175,6 +177,15 @@
 
     .nav-links a:hover::after {
       width: 100%;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--primary);
+      cursor: pointer;
     }
 
     main {
@@ -240,6 +251,38 @@
     }
 
     .service-card p {
+      color: var(--gray);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .stat-card {
+      background-color: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .stat-card:hover {
+      transform: scale(1.05);
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 1.2rem;
       color: var(--gray);
     }
 
@@ -408,7 +451,7 @@
       }
       
       .logo-text h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
       }
 
       .header-content p {
@@ -416,17 +459,33 @@
       }
 
       .nav-container {
-        flex-direction: column;
         padding: 1rem;
       }
 
+      .mobile-menu-btn {
+        display: block;
+      }
+
       .nav-links {
-        margin-top: 1rem;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        transform: translateY(-150%);
+        transition: transform 0.3s ease;
+      }
+
+      .nav-links.active {
+        transform: translateY(0);
       }
 
       .nav-links li {
-        margin-left: 1rem;
-        margin-right: 1rem;
+        margin: 1rem 0;
       }
 
       .section-title h2 {
@@ -447,16 +506,11 @@
         font-size: 1.8rem;
       }
 
-      .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .nav-links li {
-        margin: 0.5rem;
-      }
-
       .services {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
         grid-template-columns: 1fr;
       }
 
@@ -473,13 +527,7 @@
       <div class="logo-container">
         <div class="logo">
           <!-- Company Logo - Replace with your actual logo -->
-          <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="https://drive.google.com/file/d/1af2SzJ3em8DuYoEDbW-qiBy_HhpiC_7A/view?usp=drive_link">
-            <rect width="60" height="60" rx="30" fill="#0078d7"/>
-            <path d="M20 20H40V40H20V20Z" fill="white"/>
-            <path d="M25 25H35V35H25V25Z" fill="#0078d7"/>
-            <path d="M30 15L35 25H25L30 15Z" fill="white"/>
-            <path d="M30 45L25 35H35L30 45Z" fill="white"/>
-          </svg>
+          <img src="https://via.placeholder.com/100x100/0078d7/FFFFFF?text=YK" alt="Ye-Kassa Logo">
         </div>
         <div class="logo-text">
           <h1>Ye-Kassa</h1>
@@ -495,16 +543,13 @@
     <div class="nav-container">
       <div class="nav-logo">
         <!-- Navigation Logo - Replace with your actual logo -->
-        <svg width="40" height="40" viewBox="0 0 60 60" fill="none" xmlns="https://drive.google.com/file/d/1af2SzJ3em8DuYoEDbW-qiBy_HhpiC_7A/view?usp=drive_link">
-          <rect width="60" height="60" rx="30" fill="#0078d7"/>
-          <path d="M20 20H40V40H20V20Z" fill="white"/>
-          <path d="M25 25H35V35H25V25Z" fill="#0078d7"/>
-          <path d="M30 15L35 25H25L30 15Z" fill="white"/>
-          <path d="M30 45L25 35H35L30 45Z" fill="white"/>
-        </svg>
+        <img src="https://via.placeholder.com/45x45/0078d7/FFFFFF?text=YK" alt="Ye-Kassa Logo">
         <span>Ye-Kassa</span>
       </div>
-      <ul class="nav-links">
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links" id="navLinks">
         <li><a href="#home">Home</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#projects">Projects</a></li>
@@ -543,6 +588,37 @@
         </div>
       </div>
     </section>
+
+    <section class="stats-section">
+      <div class="section-title">
+        <h2>Our Achievements</h2>
+        <p>Years of excellence in the construction industry</p>
+      </div>
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">250+</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">98%</div>
+          <div class="stat-label">Client Satisfaction</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Team Members</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-title">
+        <h2>Project Management</h2>
+        <p>Access our project management portal for real-time updates</p>
+      </div>
       <div class="iframe-container">
         <div class="iframe-loading">
           <div class="spinner"></div>
@@ -558,7 +634,7 @@
         <p>Get in touch with our team for your construction needs</p>
       </div>
       <div class="contact-section">
-        <p>We're ready to bring your construction vision to life. Contact us today for a consultation.</p>
+        <p>We are ready to bring your construction vision to life. Contact us today for a consultation.</p>
         <div class="contact-info">
           <div class="contact-item">
             <i class="fas fa-phone"></i>
@@ -570,7 +646,7 @@
           </div>
           <div class="contact-item">
             <i class="fas fa-map-marker-alt"></i>
-            <span>Getahun Beshah Buld., Addis Ababa, Ethiopia</span>
+            <span>Getahun Beshah Building, Addis Ababa , Ethiopia</span>
           </div>
         </div>
       </div>
@@ -614,6 +690,8 @@
     document.addEventListener('DOMContentLoaded', function() {
       const iframe = document.querySelector('iframe');
       const loadingElement = document.querySelector('.iframe-loading');
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const navLinks = document.getElementById('navLinks');
       
       iframe.addEventListener('load', function() {
         loadingElement.style.display = 'none';
@@ -624,12 +702,20 @@
         loadingElement.style.display = 'none';
       }, 5000);
       
+      // Mobile menu toggle
+      mobileMenuBtn.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+      });
+      
       // Smooth scrolling for navigation links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
           e.preventDefault();
           const targetId = this.getAttribute('href');
           if (targetId === '#') return;
+          
+          // Close mobile menu if open
+          navLinks.classList.remove('active');
           
           const targetElement = document.querySelector(targetId);
           if (targetElement) {
